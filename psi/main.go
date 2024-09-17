@@ -17,12 +17,12 @@ import (
 )
 
 const (
-	appName        = "Psiphon Pro | 4G Viettel"
-	appVersionName = ""
-	appVersionCode = "1.2.3"
+	appName        = "Brainfuck Tunnel"
+	appVersionName = "Psiphon Pro Go"
+	appVersionCode = "1.3.200512"
 
-	copyrightYear   = "2024"
-	copyrightAuthor = "HT4GVPN.COM"
+	copyrightYear   = "2020"
+	copyrightAuthor = "Aztec Rabbit"
 )
 
 var (
@@ -49,8 +49,8 @@ func init() {
 func main() {
 	liblog.Header(
 		[]string{
-			fmt.Sprintf("%s [%sv%s]", appName, appVersionName, appVersionCode),
-			fmt.Sprintf("(c) %s %s", copyrightYear, copyrightAuthor),
+			fmt.Sprintf("%s [%s Version. %s]", appName, appVersionName, appVersionCode),
+			fmt.Sprintf("(c) %s %s.", copyrightYear, copyrightAuthor),
 		},
 		liblog.Colors["G1"],
 	)
@@ -61,8 +61,15 @@ func main() {
 	defaultConfig.Inject = libinject.DefaultConfig
 	defaultConfig.Inject.Type = 2
 	defaultConfig.Inject.Rules = map[string][]string{
-		"akamai.net:443": []string{
-			"125.235.36.177:443",
+		"akamai.net:80": []string{
+			"video.iflix.com",
+			"videocdn-2.iflix.com",
+			"iflix-videocdn-p1.akamaized.net",
+			"iflix-videocdn-p2.akamaized.net",
+			"iflix-videocdn-p3.akamaized.net",
+			"iflix-videocdn-p6.akamaized.net",
+			"iflix-videocdn-p7.akamaized.net",
+			"iflix-videocdn-p8.akamaized.net",
 		},
 	}
 	defaultConfig.Inject.Payload = ""
@@ -128,15 +135,15 @@ func main() {
 
 	time.Sleep(200 * time.Millisecond)
 
-	liblog.LogInfo("Thiết lập cầu nối trên cổng "+Inject.Config.Port, "INFO", liblog.Colors["G1"])
-	liblog.LogInfo("Proxy chạy trên cổng "+ProxyRotator.Config.Port, "INFO", liblog.Colors["G1"])
+	liblog.LogInfo("Domain Fronting running on port "+Inject.Config.Port, "INFO", liblog.Colors["G1"])
+	liblog.LogInfo("Proxy Rotator running on port "+ProxyRotator.Config.Port, "INFO", liblog.Colors["G1"])
 
 	if _, err := os.Stat(libutils.RealPath(config.Psiphon.CoreName)); os.IsNotExist(err) {
 		liblog.LogInfo(
 			fmt.Sprintf(
 				"Exception:\n\n"+
-					"|	 Không tìm thấy file '%s'\n"+
-					"|	 Dừng chương trình...\n"+
+					"|	 File '%s' not exist!\n"+
+					"|	 Exiting...\n"+
 					"|\n",
 				config.Psiphon.CoreName,
 			),
