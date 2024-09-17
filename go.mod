@@ -8,6 +8,7 @@ require (
 	github.com/aztecrabbit/libproxyrotator v0.0.0-20200502094650-114e8cd9a2c4
 	github.com/aztecrabbit/libredsocks v0.0.0-20200326105532-e68f91112913
 	github.com/aztecrabbit/libutils v0.0.0-20200809115922-31372f5a14c5
+	github.com/zezcode/psi v0.0.0-20240915125721-46346b9a523c
 	golang.org/x/sys v0.25.0
 )
 
