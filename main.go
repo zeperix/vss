@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/zezcode/vss/src/libpsiphon"
+	"src/libpsiphon/libpsiphon.go"
 	"github.com/aztecrabbit/libinject"
 	"github.com/aztecrabbit/liblog"
 	"github.com/aztecrabbit/libproxyrotator"
